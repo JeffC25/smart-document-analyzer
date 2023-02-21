@@ -1,0 +1,31 @@
+name: Matrix Multiplication Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U pytest
+      - run: echo "Testing"
+      - name: Unit Testing
+        uses: actions/checkout@v3
+      - run: pytest api_services/
+      - run: pytest auth
+      - run: pytest database
+      - run: pytest feed_ingester
+      - run: pytest file_uploader_ingester
+      - run: pytest output_generator
+      - run: pytest sys_management
+      - run: pytest text_nlp_analysis
+      - run: pytest web_app
+      - run: echo "Complete"

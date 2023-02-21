@@ -1,4 +1,4 @@
-from nlp.py import *
+from nlp import *
 
 def test_answer():
     assert convertDocument("valid", "valid", "valid") == "success"

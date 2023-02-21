@@ -1,4 +1,4 @@
-name: Matrix Multiplication Test
+name: API Modules Test
 
 on:
   push:

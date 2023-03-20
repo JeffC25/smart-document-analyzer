@@ -30,7 +30,7 @@ def createDatabase():
 def uploadFile(user_id, fileName, fileType, fileSize):
     currentTime = datetime.datetime.now()
     formattedTime = currentTime.strftime("%Y-%m-%d %H:%M:%S")
-    command = f"INSERT INTO files (file_id, file_name, user_id, timestamp, file_type, file_path, size) VALUES (NULL, {fileName}, {user_id}, {formattedTime}, {fileType}, {fileSize})"
+    command = f"INSERT INTO files (file_id, file_name, user_id, timestamp, file_type, file_path, size) VALUES ({fileName}, {user_id}, {formattedTime}, {fileType}, {fileSize})"
     cursor.execute(command)
 
 def renameFile(user_id, fileName, newName):

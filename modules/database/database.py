@@ -1,27 +1,50 @@
-def createFolder(username, name):
-    if username == "username" and name == "folder":
-        return "success"
-    return "failed"
+import sqlite3
+import datetime
 
-def moveFile(username, file, folder):
-    if not username == "username":
-        return "failed"
-    if file == "valid" and folder == "valid":
-        return "success"
-    return "failed"
+connection = sqlite3.connect('database.db')
 
-def renameFile(username, file, newName):
-    if not username == "username":
+cursor = connection.cursor()
+
+def createDatabase():
+    usersTable = """CREATE TABLE IF NOT EXISTS
+    users(user_id INTEGER PRIMARY KEY, username TEXT UNIQUE, full_name TEXT, path UNIQUE)"""
+    cursor.execute(usersTable)
+
+    filesTable = """CREATE TABLE IF NOT EXISTS
+    files(file_id INTEGER PRIMARY KEY, file_name TEXT, FOREIGN KEY(user_id) REFERENCES users(user_id), timestamp TEXT, file_type TEXT, file_path TEXT, file_size INTEGER)"""
+    cursor.execute(filesTable)
+
+    paragraphsTable = """CREATE TABLE IF NOT EXISTS
+    paragraphs(paragraph_id INTEGER PRIMARY KEY, FOREIGN KEY(file_id) REFERENCES files(file_id), sentiment INTEGER)"""
+    cursor.execute(paragraphsTable)
+
+    keywordsTable = """CREATE TABLE IF NOT EXISTS
+    keywords(keyword_id INTEGER PRIMARY KEY, keyword TEXT)"""
+    cursor.execute(keywordsTable)
+
+    kppairTable = """CREATE TABLE IF NOT EXISTS
+    kppair(FOREIGN KEY(keyword_id) REFERENCES keywords(keyword_id), FOREIGN KEY(file_id) REFERENCES files(file_id))"""
+    cursor.execute(kppairTable)
+    
+
+def uploadFile(user_id, fileName, fileType, fileSize):
+    currentTime = datetime.datetime.now()
+    formattedTime = currentTime.strftime("%Y-%m-%d %H:%M:%S")
+    command = f"INSERT INTO files (file_id, file_name, user_id, timestamp, file_type, file_path, size) VALUES (NULL, {fileName}, {user_id}, {formattedTime}, {fileType}, {fileSize})"
+    cursor.execute(command)
+
+def renameFile(user_id, fileName, newName):
+    if not user_id == "username":
         return "failed"
     if newName == "invalid":
         return "failed"
-    if file == "valid":
+    if fileName == "valid":
         return "success"
     return "failed"
 
-def deleteFile(username, file):
-    if not username == "username":
+def deleteFile(user_id, fileName):
+    if not user_id == "username":
         return "failed"
-    if file == "valid":
+    if fileName == "valid":
         return "success"
     return "failed"

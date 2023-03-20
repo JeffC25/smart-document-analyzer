@@ -2,7 +2,7 @@
 
 The data base will use a SQL schema with tables for users, files, paragraphs, and keywords
 
-# Users
+# Users Table
 
 user_id (primary key)
 
@@ -28,7 +28,7 @@ file_path
 
 size
 
-# Paragraphs
+# Paragraphs Table
 
 paragraph_id (primary key)
 
@@ -36,8 +36,15 @@ file_id (foreign key)
 
 sentiment
 
-# keywords
+# Keywords Table
 
-paragraph_id
+keyword_id (primary key)
 
-keywords
+keyword
+
+# Keyword-Paragraph Junction Table
+
+keyword_id (secondary key)
+
+file_id (secondary key)
+

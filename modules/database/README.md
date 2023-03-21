@@ -20,13 +20,17 @@ file_name
 
 user_id (foreign key)
 
-timestamp
-
 file_type
 
 file_path
 
 size
+
+def uploadFile(user_id, fileName, fileType, fileSize):
+    currentTime = datetime.datetime.now()
+    formattedTime = currentTime.strftime("%Y-%m-%d %H:%M:%S")
+    command = f"INSERT INTO files (file_id, file_name, user_id, timestamp, file_type, file_path, size) VALUES ({fileName}, {user_id}, {formattedTime}, {fileType}, {fileSize})"
+    cursor.execute(command)
 
 # Paragraphs Table
 

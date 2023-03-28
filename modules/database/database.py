@@ -44,3 +44,8 @@ def deleteFile(user_id, fileName):
     if fileName == "valid":
         return "success"
     return "failed"
+
+def getUserPath(user_id):
+    res = cursor.execute("SELECT path FROM users WHERE user_id = ?", (user_id,))
+    res.fetchone()
+    return res[0]

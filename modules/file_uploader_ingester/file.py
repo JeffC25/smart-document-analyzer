@@ -33,10 +33,7 @@ def uploadFile(file, userID, fileName=None):
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
 
-    row = cursor.execute("SELECT path FROM users WHERE user_id = ?", (userID,))
-    row.fetchone()
-    filePath = row[0]
-
+    filePath = database.getUserPath(userID)
     database.uploadFile(fileName, userID, filePath, fileSize, formattedTime)
 
     connection.commit()

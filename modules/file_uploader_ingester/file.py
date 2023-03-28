@@ -2,14 +2,13 @@ import PyPDF2
 import sqlite3
 import io
 import os
-import asyncio
 from flask import Flask, render_template, request, redirect, url_for
 import database.database
 import datetime
 
 app = Flask(__name__)
 
-async def uploadFile(file, userID, fileName=None):
+def uploadFile(file, userID, fileName=None):
     reader = PyPDF2.PdfFileReader(io.BytesIO(file.read()))
     numPages = reader.getNumPages()
     fileData = file.read()
@@ -38,12 +37,5 @@ async def uploadFile(file, userID, fileName=None):
     connection.commit()
     connection.close()
 
-@app.route('/upload', methods=['POST'])
-async def asyncUpload():
-    file = request.files['file']
-    task = asyncio.create_task(uploadFile(file))
-    return await task
-
-    # if path == "valid" and type == "valid":
-    #     return {"data": "file uploaded successfully"}
+    return {"data": "file uploaded successfully"}
     # return {"data": "upload unsuccessful"}

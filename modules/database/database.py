@@ -9,7 +9,7 @@ def createDatabase():
     cursor.execute(usersTable)
 
     filesTable = """CREATE TABLE IF NOT EXISTS
-    files(file_id INTEGER PRIMARY KEY, file_name TEXT, FOREIGN KEY(user_id) REFERENCES users(user_id), file_type TEXT, file_path TEXT, file_size INTEGER, timestamp TEXT)"""
+    files(file_id INTEGER PRIMARY KEY, file_name TEXT, FOREIGN KEY(user_id) REFERENCES users(user_id), file_type TEXT, file_size INTEGER, timestamp TEXT)"""
     cursor.execute(filesTable)
 
     paragraphsTable = """CREATE TABLE IF NOT EXISTS
@@ -25,9 +25,9 @@ def createDatabase():
     cursor.execute(kppairTable)
     
 
-def uploadFile(user_id, fileName, fileType, filePath, fileSize, currTime):
-    command = "INSERT INTO files (file_name, user_id, file_type, file_path, size, timestamp) VALUES (?, ?, ?, ?, ?, ?)"
-    cursor.execute(command, (fileName, user_id, fileType, filePath, fileSize, currTime))
+def uploadFile(fileName, user_id, filePath, fileSize, currTime):
+    command = "INSERT INTO files (file_name, user_id, file_path, size, timestamp) VALUES (?, ?, ?, ?, ?, ?)"
+    cursor.execute(command, (fileName, user_id, filePath, fileSize, currTime))
 
 def renameFile(user_id, fileName, newName):
     if not user_id == "username":

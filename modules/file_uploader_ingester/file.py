@@ -2,9 +2,14 @@ import PyPDF2
 import sqlite3
 import io
 import os
-from flask import Flask, render_template, request, redirect, url_for
-import database.database
 import datetime
+import json
+from flask import Flask, render_template, request, redirect, url_for
+import importlib
+
+import sys
+sys.path.append('./database')
+import database
 
 app = Flask(__name__)
 

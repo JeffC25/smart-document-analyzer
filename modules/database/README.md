@@ -12,7 +12,7 @@ full_name
 
 path
 
-# Files
+# Files Table
 
 file_id (primary key)
 
@@ -43,4 +43,3 @@ keyword
 keyword_id (secondary key)
 
 file_id (secondary key)
-

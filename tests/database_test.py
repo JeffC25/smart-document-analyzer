@@ -5,7 +5,6 @@ import file_uploader_ingester.uploader
 import sqlite3
 
 database.createDatabase()
-database.uploadFile("fileName.txt", 1, "filePath", 64, "currTime")
 
-#     createDatabase()
-#     uploadFile("ex.txt", 404, "path", "pdf", 404,"time")
+database.uploadFile("fileName.txt", 1, "filePath", 64, "currTime")  # Simple test
+database.uploadFile("drop.txt", 2, "'", 432, "time); DROP TABLE users") # Injection test

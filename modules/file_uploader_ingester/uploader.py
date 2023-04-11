@@ -30,14 +30,8 @@ def uploadFile(file, userID, fileName=None):
     for page in reader.pages:
         textContent += page.extract_text()
 
-    connection = sqlite3.connect('database.db')
-    cursor = connection.cursor()
-
     filePath = database.getUserPath(userID)
     database.uploadFile(fileName, userID, filePath, fileSize, formattedTime)
-
-    connection.commit()
-    connection.close()
 
     return {"data": "file uploaded successfully"}
     # return {"data": "upload unsuccessful"}

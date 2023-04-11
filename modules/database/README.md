@@ -24,6 +24,8 @@ file_path
 
 size
 
+timestamp
+
 # Paragraphs Table
 
 paragraph_id (primary key)

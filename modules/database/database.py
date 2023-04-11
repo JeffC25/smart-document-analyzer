@@ -38,7 +38,7 @@ def createDatabase():
     kppairTable = """CREATE TABLE IF NOT EXISTS kppair(
         keyword_id INTEGER,
         file_id INTEGER,
-        FOREIGN KEY(keyword_id) REFERENCES keywords(keyword_id)
+        FOREIGN KEY(keyword_id) REFERENCES keywords(keyword_id),
         FOREIGN KEY(file_id) REFERENCES files(file_id))"""
     cursor.execute(kppairTable)
 

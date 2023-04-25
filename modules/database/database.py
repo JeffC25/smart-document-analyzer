@@ -1,6 +1,6 @@
 import sqlite3
 
-database = 'database.db'
+database = "database.db"
 
 def createDatabase():
     connection = sqlite3.connect(database)
@@ -20,7 +20,8 @@ def createDatabase():
         file_path STRING,
         file_size INTEGER, 
         timestamp TEXT,
-        FOREIGN KEY(user_id) REFERENCES users(user_id));"""
+        FOREIGN KEY(user_id) REFERENCES users(user_id),
+        UNIQUE(user_id, file_name));"""
     cursor.execute(filesTable)
 
     paragraphsTable = """CREATE TABLE IF NOT EXISTS paragraphs(
@@ -45,22 +46,38 @@ def createDatabase():
     connection.commit()
     connection.close()
     
-
 def uploadFile(fileName, user_id, filePath, fileSize, currTime):
     connection = sqlite3.connect(database)
     cursor = connection.cursor()
 
-    command = "INSERT INTO files (file_name, user_id, file_path, file_size, timestamp) VALUES (?, ?, ?, ?, ?)"
+    command = """INSERT INTO files (file_name, user_id, file_path, file_size, timestamp) 
+        VALUES (?, ?, ?, ?, ?)"""
     cursor.execute(command, (fileName, user_id, filePath, fileSize, currTime))
 
     connection.commit()
     connection.close()
 
-def renameFile(user_id, fileName, newName):
-    return
+def renameFile(user_id, file_name, newName):
+    connection = sqlite3.connect(database)
+    cursor = connection.cursor()
 
-def deleteFile(user_id, fileName):
-    return
+    command = """UPDATE files
+        SET file_name = (?) WHERE file_name = (?) AND user_id = (?)"""
+    cursor.execute(command, (newName, file_name, user_id))
+
+    connection.commit()
+    connection.close()
+
+def deleteFile(user_id, file_name):
+    connection = sqlite3.connect(database)
+    cursor = connection.cursor()
+
+    command = """DELETE FROM files
+        WHERE user_id = (?) AND file_name = (?)"""
+    cursor.execute(command, (user_id, file_name))
+
+    connection.commit()
+    connection.close()
 
 def getUserPath(user_id):
     connection = sqlite3.connect(database)

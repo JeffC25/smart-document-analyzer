@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../')
-from main import database
+from app import database
 
 # create database
 database.createDatabase()

@@ -28,5 +28,5 @@ def uploadFile(file, userID, fileName=None):
     filePath = database.getUserPath(userID)
     database.uploadFile(fileName, userID, filePath, fileSize, formattedTime)
 
-    return {"data": "file uploaded successfully"}
+    return 0
 

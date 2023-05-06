@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../')
-from main import nlp
+from app.nlp import Content
 
 sampleText = '''
 David Zaslav (LAW’85), president and CEO of Warner Bros. Discovery, will deliver Boston University’s 150th Commencement address on Sunday, May 21, on Nickerson Field. 
@@ -14,3 +14,11 @@ The reading of Zaslav’s name received tepid applause from students in the ball
 Addressing the graduating seniors, Brown said that he never could have imagined that they would have had such a tumultuous college career, referencing the COVID-19 pandemic that sent them home second semester of their freshman year and then led to a “complicated” return that following fall. “Do you know how many PCR tests you had? But you made it!” Brown said. 
 '''
 
+content = Content(sampleText)
+content.summarize()
+content.getKeywords()
+content.getPolarity()
+
+print(content.summary)
+print(content.keywords)
+print(content.polarity)

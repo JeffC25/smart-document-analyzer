@@ -7,20 +7,23 @@ from heapq import nlargest
 import string
 import yake
 
+# class for document text
 class Content:
     def __init__(self, text):
         nltk.download("stopwords", quiet=True)
         self.text = text
         self.summary = None
         self.keywords = set()
-        self.sentiment = 0
+        self.polarity = 0
 
+    # summarize document
     def summarize(self, weight=0.3):
         textContent = self.text
         try:
             stopWords = stopwords.words('english')
             punctuation = string.punctuation + '“' + '”' + '…' + '’' + '' '\n'
 
+            # dictionary of instances of each word
             wordFrequencies = dict()
             for word in nltk.word_tokenize(textContent.lower()):
                 if word not in stopWords and word not in punctuation:
@@ -29,11 +32,16 @@ class Content:
                     else:
                         wordFrequencies[word] += 1
 
+            # frequency of the most common word
             maxFrequency = max(wordFrequencies.values())
+
+            # scale dictionary values
             for word in wordFrequencies.keys():
                 wordFrequencies[word] = (wordFrequencies[word]/maxFrequency)
 
+            # dictionary for weight of each sentence
             sentenceWeight = dict()
+
             for sentence in nltk.sent_tokenize(textContent):
                 # word count in current sentece
                 wordCount = len(nltk.word_tokenize(sentence))
@@ -52,6 +60,7 @@ class Content:
                 
                 sentenceWeight[sentence] = sentenceWeight[sentence]
 
+            # summarize
             selectLength = int(len(sentenceWeight) * weight)
             summarySentences = [word for word in nlargest(selectLength, sentenceWeight, key = sentenceWeight.get)]
             summary = ' '.join(summarySentences)
@@ -63,7 +72,7 @@ class Content:
             print(e)
             return -1, None
         
-
+    # generate document keywords
     def getKeywords(self):
         textContent = self.text
         try:
@@ -79,11 +88,12 @@ class Content:
             print(e)
             return -1, None
 
-    def summarize(self):
+    # generate polarity
+    def getPolarity(self):
         textContent = self.text
         try:
             analysis = TextBlob(textContent)
-            self.sentiment = analysis.polarity
+            self.polarity = analysis.polarity
         except Exception as e:
             print(e)
             return -1, None

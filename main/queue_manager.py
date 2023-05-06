@@ -12,7 +12,6 @@ class queueHandler():
         self.taskQueue = q.Queue(size)
         self.argQueue = q.Queue(size)
         self.data = set()
-        self.runningTasks = False
 
     def feedThreads(self, task, args):
         try:
@@ -28,7 +27,7 @@ class queueHandler():
         taskMap = dict()
         executor =  concurrent.futures.ThreadPoolExecutor(max_workers = 4)
 
-        while self.runningTasks:
+        while True:
             done, notDone = concurrent.futures.wait(taskMap, timeout=1, returnWhen=concurrent.futures.FIRSTCOMPLETED)
 
             while not self.taskQueue.empty():
@@ -46,8 +45,8 @@ class queueHandler():
                 taskMap.pop(finishedTask)
 
             if not taskMap:
-                self.runningTasks = False
+                break
 
         executor.shutdown()
-        
+
         return 0

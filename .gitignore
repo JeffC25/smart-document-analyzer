@@ -2,3 +2,4 @@ env.py
 __pycache__
 todo.md
 .db
+.env

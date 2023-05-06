@@ -1,1 +1,3 @@
-
+nltk==3.8.1
+textblob
+newspaper3k

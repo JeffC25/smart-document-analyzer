@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block title %}Analyze Text{% endblock %}
+
+{% block content %} 
+<form method='POST'>  
+    <div align="center">
+        <h3>Text Analysis</h3>
+        <label for="text"></label>
+        <textarea
+            type="textarea" 
+            class="form-control" 
+            id="text" 
+            name="text" 
+            placeholder="Enter text"
+            required
+            rows="16"></textarea>
+        <br/>
+        <button type="submit" class="btn">Analyze</button>
+    </div>
+</form>
+{% endblock %}

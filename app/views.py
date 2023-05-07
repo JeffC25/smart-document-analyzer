@@ -33,7 +33,6 @@ def article():
             content.getKeywords()
             content.getPolarity()
 
-            # return redirect(url_for('views.article_analysis'))
             return render_template('article_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
         
         except Exception as e:
@@ -69,3 +68,25 @@ def document():
             flash(f'Error: {e}', category='error')
     
     return render_template('document.html', user=current_user)
+
+@views.route('/text', methods=['GET', 'POST'])
+@login_required
+def text():
+    if request.method == 'POST':
+        logging.info("Analyzing...")
+        text=request.form.get('text')
+        try:
+            content = Content(text)
+            content.summarize()
+            content.getKeywords()
+            content.getPolarity()
+
+            logging.info(f"Summary: {content.summary}")
+            logging.info(f"Keywords: {content.keywords}")
+            logging.info(f"Summary: {content.polarity}")
+            return render_template('text_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
+        
+        except Exception as e:
+            flash(f'Error: {e}', category='error')
+    
+    return render_template('text.html', user=current_user)

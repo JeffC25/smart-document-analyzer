@@ -2,5 +2,20 @@
 {% block title %}Document Results{% endblock %}
 
 {% block content %} 
-<h3>Analysis Results</h3>
+    <h1>Analysis Results</h1>
+    <br/>
+
+    <h3>Polarity: {{polarity}}</h3>
+
+    <h3>Summary:</h3>
+    <p> {{summary}} </p>
+    <br/>
+
+    <h3>Keywords:</h3>
+    <ul class="list-group list-group-flush" id="files">
+        {% for word in keywords %}
+            <li>{{word}}</li>
+        {% endfor %}
+    </ul>   
+    <br/>
 {% endblock %}

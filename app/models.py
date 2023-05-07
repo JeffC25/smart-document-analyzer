@@ -6,7 +6,6 @@ class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fileName = db.Column(db.String(128))
     userId = db.Column(db.Integer, db.ForeignKey('user.id'))
-    filePath = db.Column(db.String(128))
     fileSize = db.Column(db.Integer)
     fileSummary = db.Column(db.String(128))
     timeStamp = db.Column(db.DateTime(timezone=True), default=func.now())

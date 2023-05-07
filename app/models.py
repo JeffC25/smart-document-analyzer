@@ -11,7 +11,6 @@ class File(db.Model):
     fileSummary = db.Column(db.String(128))
     timeStamp = db.Column(db.DateTime(timezone=True), default=func.now())
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)

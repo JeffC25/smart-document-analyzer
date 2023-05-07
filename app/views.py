@@ -20,18 +20,19 @@ def article():
         print("Analyzing...")
         article=request.form.get('article')
         try:
-            content = Content(getArticle(article)[0])
+            content = Content(getArticle(article)[1])
             content.summarize()
             content.getKeywords()
             content.getPolarity()
 
-            print(content.summary)
-            print(content.keywords)
-            print(content.polarity)
+            for j in content.keywords:
+                print(j)
+
+            # return redirect(url_for('views.article_analysis'))
+            return render_template('article_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
+        
         except Exception as e:
             flash(f'Error: {e}', category='error')
-
-        return redirect(url_for('views.article_analysis'))
     
     return render_template('article.html', user=current_user)
 
@@ -40,12 +41,12 @@ def article():
 def document():
     return render_template('document.html', user=current_user)
 
-@views.route('/article-results')
-@login_required
-def article_analysis():
-    return render_template('article_results.html', user=current_user)
+# @views.route('/article-results')
+# @login_required
+# def article_analysis():
+#     return render_template('article_results.html', user=current_user)
 
-@views.route('/document-results') 
-@login_required
-def document_analysis():
-    return render_template('document_results.html', user=current_user)
+# @views.route('/document-results') 
+# @login_required
+# def document_analysis():
+#     return render_template('document_results.html', user=current_user)

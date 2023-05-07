@@ -5,7 +5,7 @@ from app.nfi import getArticle
 
 url = 'https://www.bu.edu/articles/2023/class-2023-senior-breakfast/'
 
-content = Content(getArticle(url)[0])
+content = Content(getArticle(url)[1])
 content.summarize()
 content.getKeywords()
 content.getPolarity()

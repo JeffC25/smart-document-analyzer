@@ -12,8 +12,8 @@ def getArticle(url):
         article.download()
         article.parse()
         article.nlp()
-        return article.text, 0
+        return 0, article.text
     except Exception as e:
         print(e)
-        return None, -1
+        return -1, None
 

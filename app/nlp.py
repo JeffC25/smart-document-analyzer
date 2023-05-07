@@ -21,12 +21,14 @@ class Content:
         textContent = self.text
         try:
             stopWords = stopwords.words('english')
-            punctuation = string.punctuation + '“' + '”' + '…' + '’' + '' '\n'
+            punctuation = string.punctuation + '“' + '”' + '…' + '’' + '\n'
+            # punctuation = string.punctuation
 
             # dictionary of instances of each word
             wordFrequencies = dict()
             for word in nltk.word_tokenize(textContent.lower()):
                 if word not in stopWords and word not in punctuation:
+                # if word not in stopWords:
                     if word not in wordFrequencies:
                         wordFrequencies[word] = 1
                     else:

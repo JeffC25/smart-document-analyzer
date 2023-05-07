@@ -2,9 +2,18 @@
 {% block title %}Analyze Article{% endblock %}
 
 {% block content %} 
-</form method='POST'>  
-    <textarea name="file" id="note" class="form-control"></textarea>
+<form method='POST'>  
+    <h3>Article Analysis</h3>
     <div align="center">
+        <label for="article"></label>
+        <input 
+            type="url" 
+            class="form-control" 
+            id="article" 
+            name="article" 
+            placeholder="Enter article URL"
+        />
+        <br/>
         <button type="submit" class="btn btn-primary">Analyze</button>
     </div>
 </form>

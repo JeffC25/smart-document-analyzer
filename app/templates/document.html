@@ -2,9 +2,18 @@
 {% block title %}Analyze Document{% endblock %}
 
 {% block content %} 
-</form method='POST'>  
-    <textarea name="file" id="note" class="form-control"></textarea>
+<form method='POST'>  
+    <h3>Document Analysis</h3>
     <div align="center">
+        <label for="file"></label>
+        <input 
+            type="file" 
+            class="form-control form-control-file" 
+            id="document" 
+            name="document" 
+            placeholder="Upload document"
+        />
+        <br/>
         <button type="submit" class="btn btn-primary">Analyze</button>
     </div>
 </form>

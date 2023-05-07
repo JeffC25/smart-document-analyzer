@@ -6,6 +6,9 @@ from flask_login import login_user, login_required, logout_user, current_user
 from .nlp import Content
 from .nfi import getArticle
 from .sfu import uploadFile
+import logging
+
+logging.basicConfig(level=logging.INFO, format="(%(asctime)s): %(message)s")
 
 # define routes
 views = Blueprint('views', __name__)
@@ -22,7 +25,7 @@ def home():
 @login_required
 def article():
     if request.method == 'POST':
-        print("Analyzing...")
+        logging.info("Analyzing...")
         article=request.form.get('article')
         try:
             content = Content(getArticle(article)[1])
@@ -43,10 +46,10 @@ def article():
 @login_required
 def document():
     if request.method == 'POST':
-        print("Analyzing...")
+        logging.info("Analyzing...")
         file=request.files['file']
-        print(f"Uploaded: {file.filename}")
-        print(f"File size: {len(file.read())} bytes")
+        logging.info(f"Uploaded: {file.filename}")
+        logging.info(f"File size: {len(file.read())} bytes")
         try:
             content = Content(uploadFile(file)[1])
             content.summarize()
@@ -57,6 +60,9 @@ def document():
             db.session.add(newFile)
             db.session.commit()
 
+            logging.info(f"Summary: {content.summary}")
+            logging.info(f"Keywords: {content.keywords}")
+            logging.info(f"Summary: {content.polarity}")
             return render_template('document_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
         
         except Exception as e:

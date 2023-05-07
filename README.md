@@ -27,6 +27,7 @@ It uses a simple extractive text algorithm that generates its analysis by utiliz
 ## Instructions:
 
 1. Run `git clone git@github.com:ECE530-2023/news-analyzer-JeffC25.git` to clone the repository
-2. Run `pip install -r requirements.txt` to install Python dependencies
-3. Run `apt-get install sqlite3` to install SQLite3
-4. Run `python3 main.py` to launch the Flask application
+2. Create a `.env` file in the cloned directory and populate it with `SECRET_KEY=<your secret key>`
+3. Run `pip install -r requirements.txt` to install Python dependencies
+4. Run `apt-get install sqlite3` to install SQLite3
+5. Run `python3 main.py` to launch the Flask application

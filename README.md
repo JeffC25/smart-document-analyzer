@@ -4,11 +4,15 @@ This project is a document analyzer implemented in Flask and allows users to gen
 
 ## Database Overview 
 
-The database was implemented with SQLAlchemy and SQLite3. It currently consists of 2 tables: a User table and a File table.
+The database was implemented with SQLAlchemy and SQLite3. It currently consists of 4 tables: a User table , File table, Keyword table, and Keyword Pairing table
 
-The User table stores information regarding each user's username, email, and (hashed) password
+Each row of the User table stores information regarding each user's ID, username, email, and (hashed) password
 
-The File table stores information regarding each file's name, owner, size, summary, and time of upload
+Each row of the File table stores information regarding each file's ID, name, owner ID (foreign key), size, summary, and time of upload
+
+Each row of the Keyword table stores keywords and ID
+
+Each row of the Keyword Pairing table stores a file ID (foreign key) and keyword ID (foreign key)
 
 ## PDF Uploader
 

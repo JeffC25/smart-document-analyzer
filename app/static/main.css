@@ -10,3 +10,7 @@ button {
     background-color:rgb(175, 215, 50) !important; 
     border: 0 !important;
 }
+
+ul {
+    list-style-type: none !important;
+}

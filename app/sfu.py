@@ -26,7 +26,7 @@ def uploadFile(file, userID, fileName=None):
         textContent += page.extract_text()
 
     filePath = database.getUserPath(userID)
-    database.uploadFile(fileName, userID, filePath, fileSize, formattedTime)
+    # database.uploadFile(fileName, userID, filePath, fileSize, formattedTime)
 
     return 0
 

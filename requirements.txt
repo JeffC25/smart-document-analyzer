@@ -1,3 +1,4 @@
 nltk==3.8.1
-textblob
-newspaper3k
+textblob==0.17.1
+newspaper3k==0.2.8
+flask==2.3.2

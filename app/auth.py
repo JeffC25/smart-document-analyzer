@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash
-from .database import *
+from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -26,6 +27,7 @@ def signup():
         elif len(password1) < 5:
             flash('Password must be at least 5 characters.', category='error')
         else:
+            newUser = User(email=email, username=username, password=generate_password_hash(password1, method='sha256'))
             flash('Account created!', category='success')
 
     return render_template("signup.html")

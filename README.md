@@ -1,6 +1,6 @@
 # Smart Document Analyzer Overview
 
-This project is a document analyzer implemented in Flask and allows users to generate summaries, keywords, and sentiment from PDF files or news article URLs. It consists of the following major component: a database, PDF uploader, news article ingester, NLP sentiment module, and a frontend UI created with Bootstrap.
+This project is a document analyzer implemented in Flask and allows users to generate summaries, keywords, and sentiment from PDF files or news article URLs. It consists of the following major component: a database, PDF uploader, news article ingester, NLP sentiment module, and a frontend UI created with Bootstrap. The project is packaged using Docker.
 
 ## Database Overview 
 

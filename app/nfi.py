@@ -1,10 +1,4 @@
-# from nltk.corpus import stopwords
-# from nltk.tokenize import sent_tokenize
-# import nltk.downloader
-# from textblob import TextBlob
 from newspaper import Article
-# import requests
-# from bs4 import BeautifulSoup
 
 def getArticle(url):
     try:

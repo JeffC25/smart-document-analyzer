@@ -11,9 +11,11 @@ from .sfu import uploadFile
 views = Blueprint('views', __name__)
 
 @views.route('/')
-@views.route('/home')
 def home():
-    return render_template('login.html', user=current_user)
+    if current_user.is_authenticated:
+        return redirect(url_for('views.article'))
+    else:
+        return redirect(url_for('auth.login'))
 
 
 @views.route('/article', methods=['GET','POST'])
@@ -46,7 +48,6 @@ def document():
         print(f"Uploaded: {file.filename}")
         print(f"File size: {len(file.read())} bytes")
         try:
-            # document = file.read()
             content = Content(uploadFile(file)[1])
             content.summarize()
             content.getKeywords()

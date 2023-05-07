@@ -6,11 +6,15 @@ RUN apt-get update -y
 RUN apt-get install python3 python3-pip ipython3 wget -y
 RUN apt-get install sqlite3 -y
 
-WORKDIR /news-analyzer-JeffC25
+WORKDIR /news-analyzer
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY Dockerfile .
+COPY app/ ./app
+COPY .env .
+COPY main.py .
+ENV FLASK_APP=main.py
 
-ENTRYPOINT [ ""]
+CMD export FLASK_APP=main.py & flask run --host 0.0.0.0 

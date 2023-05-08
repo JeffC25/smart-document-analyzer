@@ -20,7 +20,7 @@ It uses a simple extractive text algorithm that generates its analysis by utiliz
 
 The database was implemented with SQLAlchemy and SQLite3. It currently consists of 4 tables: a User table , File table, Keyword table, and Keyword Pairing table
 
-Each row of the User table stores information regarding each user's ID, username, email, and (hashed) password
+Each row of the User table stores information regarding each user's ID, username, email, and (salted and hashed) password
 
 Each row of the File table stores information regarding each file's ID, name, owner ID (foreign key), size, summary, and time of upload
 

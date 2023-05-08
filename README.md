@@ -39,9 +39,9 @@ The project frontend was created using Bootstrap CSS. It currently features sign
 
 The project currently supports RESTful API endpoints for analyzing via article url and manual text input. 
 
-For analyzing via article url, request the endpoint `/api/article/<article url>`
+For analyzing via article url, request the endpoint `/api/article=<article url>`
 
-For analyzing via text input, request the endpoint `/api/text/<text>`
+For analyzing via text input, request the endpoint `/api/text=<text>`
 
 ## Instructions:
 

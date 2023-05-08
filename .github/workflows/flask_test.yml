@@ -18,8 +18,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U pytest
           pip install -r requirements.txt
+          
       - run: echo "Testing"
-      - uses: actions/checkout@v3
+      
       - name: Module Testing
+        timeout-minutes: 1
         run: python3 main.py
+        
       - run: echo "Complete"

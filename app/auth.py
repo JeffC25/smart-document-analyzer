@@ -14,7 +14,7 @@ def login():
         password = request.form.get('password')
 
         user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
+        if user and check_password_hash(user.password, password + email):
             flash('Login successful!', category='success')
             login_user(user, remember=True)
             return redirect(url_for('views.article'))
@@ -48,7 +48,7 @@ def signup():
         elif len(password1) < 5:
             flash('Password must be at least 5 characters.', category='error')
         else:
-            newUser = User(email=email, username=username, password=generate_password_hash(password1, method='sha256'))
+            newUser = User(email=email, username=username, password=generate_password_hash(password1 + email, method='sha256'))
             db.session.add(newUser)
             db.session.commit()
             login_user(newUser, remember=True)

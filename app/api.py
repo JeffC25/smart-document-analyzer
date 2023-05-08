@@ -11,7 +11,7 @@ import logging
 # define routes
 api = Blueprint('api', __name__)
 
-@api.route('/article/<path:article>', methods=['GET', 'POST'])
+@api.route('/article=<path:article>', methods=['GET', 'POST'])
 @login_required
 def article(article):
     try:
@@ -35,7 +35,7 @@ def article(article):
     
     return jsonify()
 
-@api.route('/text/<path:text>', methods=['GET', 'POST'])
+@api.route('/text=<path:text>', methods=['GET', 'POST'])
 @login_required
 def text(text):
     try:

@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV FLASK_APP=main.py
 
 RUN apt-get update -y
 RUN apt-get install python3 python3-pip ipython3 wget -y

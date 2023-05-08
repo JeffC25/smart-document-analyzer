@@ -19,7 +19,7 @@ jobs:
           pip install -U pytest
           pip install -r requirements.txt
       
-      - name: Module Testing
+      - name: App Testing
         run: timeout 15 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
         
       - run: echo "Complete"

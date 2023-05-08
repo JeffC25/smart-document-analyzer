@@ -1,4 +1,4 @@
-name: Modules Test
+name: Flask Test
 
 on:
   push:

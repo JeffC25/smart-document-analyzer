@@ -61,7 +61,7 @@ def document():
 
             logging.info(f"Summary: {content.summary}")
             logging.info(f"Keywords: {content.keywords}")
-            logging.info(f"Summary: {content.polarity}")
+            logging.info(f"Poliarity: {content.polarity}")
             return render_template('document_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
         
         except Exception as e:
@@ -83,7 +83,7 @@ def text():
 
             logging.info(f"Summary: {content.summary}")
             logging.info(f"Keywords: {content.keywords}")
-            logging.info(f"Summary: {content.polarity}")
+            logging.info(f"Polarity: {content.polarity}")
             return render_template('text_results.html', user=current_user, summary=content.summary, keywords=content.keywords, polarity=content.polarity)
         
         except Exception as e:

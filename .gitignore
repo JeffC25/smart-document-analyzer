@@ -1,5 +1,4 @@
-env.py
 __pycache__
 todo.md
-.db
-.env
+*.db
+*.env

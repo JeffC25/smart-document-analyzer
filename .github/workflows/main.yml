@@ -13,13 +13,22 @@ jobs:
     
     steps:
       - name: Install dependencies
-        run: |
+        uses: actions/checkout@v3
+      - run: |
           python -m pip install --upgrade pip
           pip install -U pytest
+          pip install -r requirements.txt
+      
       - run: echo "Testing"
-      - name: Unit Testing
-        uses: actions/checkout@v3
-      - run: cd tests/
-      - run: pytest
-
+      - uses: actions/checkout@v3
+      - name: SFU Testing
+        working-directory: ./tests
+        run: python3 sfu_test.py
+      - name: NFI Testing
+        working-directory: ./tests
+        run: python3 nfi_test.py
+      - name: DB Testing
+        working-directory: ./tests
+        run: python3 database_test.py
+        
       - run: echo "Complete"

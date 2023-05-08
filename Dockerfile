@@ -17,4 +17,4 @@ COPY .env .
 COPY main.py .
 ENV FLASK_APP=main.py
 
-CMD export FLASK_APP=main.py & flask run --host 0.0.0.0 
+CMD flask run --host 0.0.0.0 

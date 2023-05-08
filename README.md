@@ -28,6 +28,21 @@ The NLP sentiment module implements a Content() class that takes in a text. It c
 
 It uses a simple extractive text algorithm that generates its analysis by utilizing stopwords, word frequencies, and sentence weights in conjunction with the NLTK, TextBlob, and Yake libraries.
 
+## UI
+
+The project frontend was created using Bootstrap CSS. It currently features sign up, login, and sign out functionalities for authentication. Once signed in, the user may access the navbar to analyze text in 3 ways: 
+1. Input an article URL
+2. Upload a PDF document
+3. Manually input text
+
+## API
+
+The project currently supports RESTful API endpoints for analyzing via article url and manual text input. 
+
+For analyzing via article url, request the endpoint `/api/article/<article url>`
+
+For analyzing via text input, request the endpoint `/api/text/<text>`
+
 ## Instructions:
 
 1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository

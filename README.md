@@ -1,5 +1,7 @@
 # Smart Document Analyzer
 
+![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif.gif)
+
 ## Instructions:
 
 1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository

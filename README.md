@@ -1,6 +1,6 @@
 # Smart Document Analyzer
 
-![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif.gif)
+![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif)
 
 ## Instructions:
 

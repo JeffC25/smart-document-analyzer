@@ -22,7 +22,8 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - name: App Testing
-      run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+      uses: actions/checkout@v3
+    - run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
 
   connect:
     needs: [build]

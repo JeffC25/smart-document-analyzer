@@ -8,9 +8,7 @@ on:
     
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest    
     steps:
       - name: Install dependencies
         uses: actions/checkout@v3
@@ -19,15 +17,16 @@ jobs:
           pip install -U pytest
           pip install -r requirements.txt
       
+  start:
+      runs-on: ubuntu-latest     
+      steps:
       - name: App Testing
-        run: timeout 100 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        run: timeout 15 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
         
       - run: echo "Complete"
       
-  build2:
-    
-    runs-on: ubuntu-latest
-    
+  connect:
+    runs-on: ubuntu-latest 
     steps:
-      - run: sleep 75
+      - run: sleep 5
       - run: curl localhost:5000/login 

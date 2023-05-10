@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt
       
       - name: App Testing
-        run: timeout 15 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+        run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
         
       - run: echo "Complete"
       
@@ -29,4 +29,5 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: curl localhost:5000/login
+      - run: sleep 15
+      - run: curl localhost:5000/login 

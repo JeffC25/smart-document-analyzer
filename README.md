@@ -1,4 +1,16 @@
-# Smart Document Analyzer Overview
+# Smart Document Analyzer
+
+![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif.gif)
+
+## Instructions:
+
+1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository
+2. Create a `.env` file in the cloned directory and populate it with `SECRET_KEY=<your secret key>`
+3. Run `pip install -r requirements.txt` to install Python dependencies
+4. Run `apt-get install sqlite3` to install SQLite3
+5. Run `python3 main.py` to launch the Flask application
+
+## Overview
 
 This project is a document analyzer implemented in Flask and allows users to generate summaries, keywords, and sentiment from PDF files, news article URLs, or manual text input. It consists of the following major component: a database, PDF uploader, news article ingester, NLP sentiment module, and a frontend UI created with Bootstrap. The project is packaged using Docker.
 
@@ -42,11 +54,3 @@ The project currently supports RESTful API endpoints for analyzing via article u
 For analyzing via article url, request the endpoint `/api/article=<article url>`
 
 For analyzing via text input, request the endpoint `/api/text=<text>`
-
-## Instructions:
-
-1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository
-2. Create a `.env` file in the cloned directory and populate it with `SECRET_KEY=<your secret key>`
-3. Run `pip install -r requirements.txt` to install Python dependencies
-4. Run `apt-get install sqlite3` to install SQLite3
-5. Run `python3 main.py` to launch the Flask application

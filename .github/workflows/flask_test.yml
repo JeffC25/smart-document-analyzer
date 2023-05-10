@@ -29,5 +29,5 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run: sleep 15
+      - run: sleep 45
       - run: curl localhost:5000/login 

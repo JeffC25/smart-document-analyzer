@@ -1,15 +1,18 @@
-from flask import Blueprint, render_template, request, flash, jsonify
-from .models import File, User
-from werkzeug.security import generate_password_hash, check_password_hash
-from . import db
+from flask import Blueprint, render_template, request, flash, jsonify, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from .nlp import Content
 from .nfi import getArticle
 from .sfu import uploadFile
+from .models import File, User
+from . import db
 import logging
 
 # define routes
 api = Blueprint('api', __name__)
+
+@api.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 @api.route('/article=<path:article>', methods=['GET', 'POST'])
 @login_required
@@ -34,6 +37,7 @@ def article(article):
         pass
     
     return jsonify()
+
 
 @api.route('/text=<path:text>', methods=['GET', 'POST'])
 @login_required

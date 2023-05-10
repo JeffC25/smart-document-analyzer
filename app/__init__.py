@@ -8,7 +8,7 @@ db = SQLAlchemy()
 DB_NAME = "database.db"
 
 def createApp():
-    # initiate flask
+    # configure flask
     from dotenv import load_dotenv
     import os
 
@@ -16,9 +16,9 @@ def createApp():
     secretKey = os.getenv('SECRET_KEY')
 
     app = Flask(__name__)
-    # app.config['UPLOAD_FOLDER'] = 'static/files'
     app.config['SECRET_KEY'] = secretKey
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['TRAP_HTTP_EXCEPTIONS']=True
     db.init_app(app)
 
     # register routes
@@ -43,8 +43,3 @@ def createApp():
         return User.query.get(int(id))
 
     return app
-
-# def createDatabase(app):
-#     if not path.exists('app/' + DB_NAME):
-#         db.create_all()
-#         print('database created')

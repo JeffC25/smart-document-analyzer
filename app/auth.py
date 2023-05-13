@@ -9,8 +9,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.errorhandler(404)
 def page_not_found(e):
-    return "hi"
-    return render_template('404.html'), 404
+    return render_template('not_found.html'), 404
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():

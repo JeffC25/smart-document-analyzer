@@ -10,10 +10,6 @@ import logging
 # define routes
 api = Blueprint('api', __name__)
 
-@api.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
 @api.route('/article=<path:article>', methods=['GET', 'POST'])
 @login_required
 def article(article):

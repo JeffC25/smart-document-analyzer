@@ -14,7 +14,7 @@ views = Blueprint('views', __name__)
 
 @views.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('not_found.html'), 404
 
 @views.route('/')
 def home():

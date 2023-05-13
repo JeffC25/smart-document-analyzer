@@ -16,20 +16,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U pytest
           pip install -r requirements.txt
-  
-  launch_flask:
-    needs: [build]
-    runs-on: [ubuntu-latest]
-    steps:
-    - name: App Testing
-      uses: actions/checkout@v3
-    - run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
-
-  connect:
-    needs: [build]
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Sleep
-        run: sleep 5
-      - name: Connect
-        run: curl localhost:5000/login
+      - name: App Testing
+        uses: actions/checkout@v3
+      - run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi

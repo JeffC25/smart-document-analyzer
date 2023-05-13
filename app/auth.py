@@ -1,11 +1,15 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from .models import User
-from werkzeug.security import generate_password_hash, check_password_hash
-from . import db
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from .models import User
+from . import db
 
 # define routes
 auth = Blueprint('auth', __name__)
+
+@auth.errorhandler(404)
+def page_not_found(e):
+    return render_template('not_found.html'), 404
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():

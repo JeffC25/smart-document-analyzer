@@ -54,3 +54,5 @@ The project currently supports RESTful API endpoints for analyzing via article u
 For analyzing via article url, request the endpoint `/api/article=<article url>`
 
 For analyzing via text input, request the endpoint `/api/text=<text>`
+
+

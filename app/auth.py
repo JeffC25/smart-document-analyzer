@@ -3,6 +3,11 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
+from .database import *
+
+# verify user login
+def authenticate(user, password, email):
+    return check_password_hash(user.password, password + email)
 
 # define routes
 auth = Blueprint('auth', __name__)
@@ -17,8 +22,8 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password + email):
+        user = getUserByEmail(email)
+        if user and authenticate(user, password, email):
             flash('Login successful!', category='success')
 
             login_user(user)
@@ -42,7 +47,7 @@ def signup():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        user = User.query.filter_by(email=email).first()
+        user = getUserByEmail(email)
 
         if user:
             flash('Email already exists.', category='error')
@@ -53,9 +58,7 @@ def signup():
         elif len(password1) < 5:
             flash('Password must be at least 5 characters.', category='error')
         else:
-            newUser = User(email=email, username=username, password=generate_password_hash(password1 + email, method='sha256'))
-            db.session.add(newUser)
-            db.session.commit()
+            newUser = createUser(email, username, password1)
 
             login_user(newUser)
             flash('Account created!', category='success')

@@ -80,11 +80,11 @@ def signup():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-    if isValidEmail(email) and isValidUsername(username) and isValidPassword(password1, password2):
-        newUser = createUser(email, username, password1)
-
-        login_user(newUser)
-        flash('Account created!', category='success')
-        return redirect(url_for('views.article'))
+        if isValidEmail(email) and isValidUsername(username) and isValidPassword(password1, password2):
+            newUser = createUser(email, username, password1)
+            login_user(newUser)
+            
+            flash('Account created!', category='success')
+            return redirect(url_for('views.article'))
 
     return render_template("signup.html", user=current_user)

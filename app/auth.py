@@ -5,17 +5,47 @@ from .models import User
 from . import db
 from .database import *
 
-# verify user login
+# validate signup/login
+def isValidPassword(password1, password2):
+    if password1 != password2:
+        flash('Passwords do not match.', category='error')
+        return False
+    if len(password1) < 8 or len(password1) > 32:
+        flash('Password must be between 4 and 32 characters', category='error')
+        return False
+    return True
+
+def isValidUsername(username):
+    if not username.isalnum():
+        flash('Username must only contain letters and numbers.', category='error')
+        return False
+    if len(username) < 4 or len(username) > 32:
+        flash('Username must be between 4 and 32 characters.', category='error')
+        return False
+    user = getUserByUsername(username)
+    if user:
+        flash('Username already exists.', category='error')
+    return True
+
+def isValidEmail(email):
+    user = getUserByEmail(email)
+    if user:
+        flash('Email already in use', category='error')
+        return False
+    return True
+
 def authenticate(user, password, email):
     return check_password_hash(user.password, password + email)
 
 # define routes
 auth = Blueprint('auth', __name__)
 
+# error handler
 @auth.errorhandler(404)
 def page_not_found(e):
     return render_template('not_found.html'), 404
 
+# login
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -33,12 +63,15 @@ def login():
 
     return render_template("login.html", user=current_user)
 
+# logout
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
+    flash('Successfully logged out!', category='success')
     return redirect(url_for('auth.login'))
 
+# sign up
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -47,21 +80,11 @@ def signup():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        user = getUserByEmail(email)
+    if isValidEmail(email) and isValidUsername(username) and isValidPassword(password1, password2):
+        newUser = createUser(email, username, password1)
 
-        if user:
-            flash('Email already exists.', category='error')
-        elif len(username) < 3:
-            flash('Username must be greater than 3 characters.', category='error')
-        elif password1 != password2:
-            flash('Passwords do not match.', category='error')
-        elif len(password1) < 5:
-            flash('Password must be at least 5 characters.', category='error')
-        else:
-            newUser = createUser(email, username, password1)
-
-            login_user(newUser)
-            flash('Account created!', category='success')
-            return redirect(url_for('views.article'))
+        login_user(newUser)
+        flash('Account created!', category='success')
+        return redirect(url_for('views.article'))
 
     return render_template("signup.html", user=current_user)

@@ -8,6 +8,10 @@ def getUserByEmail(email):
     user = User.query.filter_by(email=email).first()
     return user
 
+def getUserByUsername(username):
+    user = User.query.filter_by(username=username).first()
+    return user
+
 def createUser(email, username, password):
     newUser = User(email=email, username=username, password=generate_password_hash(password + email, method='sha256'))
     db.session.add(newUser)

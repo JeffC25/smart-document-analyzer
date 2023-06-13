@@ -1,7 +1,7 @@
 from flask_login import UserMixin, login_user
 from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Keyword
+from .models import User, Keyword, File
 from . import db
 
 # database will be created in __init__.py
@@ -19,6 +19,12 @@ def createUser(email, username, password):
     db.session.add(newUser)
     db.session.commit()
     return newUser
+
+def createFile(fileName, userId, fileSize, fileSummary):
+    newFile = File(fileName=fileName, userId=userId, fileSize=fileSize, fileSummary=fileSummary)
+    db.session.add(newFile)
+    db.session.commit()
+    return newFile
 
 def createKeyword(keyword):
     newKeyword = Keyword(keyword=keyword)

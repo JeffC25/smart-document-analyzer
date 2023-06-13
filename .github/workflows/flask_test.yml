@@ -8,9 +8,7 @@ on:
     
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-    
+    runs-on: [ubuntu-latest]    
     steps:
       - name: Install dependencies
         uses: actions/checkout@v3
@@ -18,15 +16,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U pytest
           pip install -r requirements.txt
-      
       - name: App Testing
-        run: timeout 15 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
-        
-      - run: echo "Complete"
-      
-  build2:
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-      - run: echo "Test"
+        uses: actions/checkout@v3
+      - run: timeout 30 python3 main.py || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi

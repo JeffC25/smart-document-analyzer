@@ -2,7 +2,7 @@
 
 ![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif.gif)
 
-## Instructions:
+## Instructions
 
 1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository
 2. Create a `.env` file in the cloned directory and populate it with `SECRET_KEY=<your secret key>`
@@ -54,3 +54,5 @@ The project currently supports RESTful API endpoints for analyzing via article u
 For analyzing via article url, request the endpoint `/api/article=<article url>`
 
 For analyzing via text input, request the endpoint `/api/text=<text>`
+
+

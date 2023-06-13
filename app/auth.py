@@ -11,7 +11,7 @@ def isValidPassword(password1, password2):
         flash('Passwords do not match.', category='error')
         return False
     if len(password1) < 8 or len(password1) > 32:
-        flash('Password must be between 4 and 32 characters', category='error')
+        flash('Password must be between 8 and 32 characters', category='error')
         return False
     return True
 

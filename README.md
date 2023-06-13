@@ -2,7 +2,7 @@
 
 ![Demo](https://github.com/JeffC25/smart-document-analyzer/blob/main/documents/demo.gif.gif)
 
-## Instructions:
+## Instructions
 
 1. Run `git clone git@github.com:JeffC25/smart-document-analyzer.git` to clone the repository
 2. Create a `.env` file in the cloned directory and populate it with `SECRET_KEY=<your secret key>`
@@ -30,15 +30,11 @@ It uses a simple extractive text algorithm that generates its analysis by utiliz
 
 ## Database Overview 
 
-The database was implemented with SQLAlchemy and SQLite3. It currently consists of 4 tables: a User table , File table, Keyword table, and Keyword Pairing table
-
+The database was implemented with SQLAlchemy and SQLite3. ~~It currently consists of 4 tables: a User table , File table, Keyword table, and Keyword Pairing table
 Each row of the User table stores information regarding each user's ID, username, email, and (salted and hashed) password
-
 Each row of the File table stores information regarding each file's ID, name, owner ID (foreign key), size, summary, and time of upload
-
 Each row of the Keyword table stores keywords and ID
-
-Each row of the Keyword Pairing table stores a file ID (foreign key) and keyword ID (foreign key)
+Each row of the Keyword Pairing table stores a file ID (foreign key) and keyword ID (foreign key)~~
 
 ## UI
 
@@ -54,3 +50,5 @@ The project currently supports RESTful API endpoints for analyzing via article u
 For analyzing via article url, request the endpoint `/api/article=<article url>`
 
 For analyzing via text input, request the endpoint `/api/text=<text>`
+
+

@@ -19,3 +19,9 @@ def createUser(email, username, password):
     db.session.add(newUser)
     db.session.commit()
     return newUser
+
+def createKeyword(keyword):
+    newKeyword = Keyword(keyword=keyword)
+    db.session.add(newKeyword)
+    db.session.commit()
+    return newKeyword

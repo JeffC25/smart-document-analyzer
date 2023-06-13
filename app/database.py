@@ -1,3 +1,5 @@
+# DEPRECATED -- DO NOT USE
+
 import sqlite3
 
 database = "database.db"
@@ -134,3 +136,5 @@ def addKeyword(keyword):
     connection.close()
 
     return returnCode
+
+

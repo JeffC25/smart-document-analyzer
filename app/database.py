@@ -1,8 +1,10 @@
 from flask_login import UserMixin, login_user
 from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
+from .models import User, Keyword
 from . import db
+
+# database will be created in __init__.py
 
 def getUserByEmail(email):
     user = User.query.filter_by(email=email).first()

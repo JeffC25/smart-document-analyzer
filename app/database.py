@@ -120,3 +120,17 @@ def getUserPath(user_id):
     connection.close()
 
     return 0, res[0]
+
+def addKeyword(keyword): 
+    returnCode = 0
+
+    connection = sqlite3.connect(database)
+    cursor = connection.cursor()
+
+    command = """INSERT INTO keywords (keywrod) VALUES (?)"""
+    cursor.execute(command, (keyword,))
+
+    connection.commit()
+    connection.close()
+
+    return returnCode

@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 from werkzeug.utils import secure_filename
+import nltk
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -41,6 +42,9 @@ def createApp():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+
+    # initialize nltk
+    nltk.download('punkt')
 
     return app
 
